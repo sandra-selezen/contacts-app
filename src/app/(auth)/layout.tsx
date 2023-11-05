@@ -13,7 +13,7 @@ const AuthLayout = ({
 }) => {
   return (
     <main>
-      <Container pt={'40px'} pb={'40'}>
+      <Container pt={'40px'} pb={'40px'}>
         {children}
       </Container>
     </main>
