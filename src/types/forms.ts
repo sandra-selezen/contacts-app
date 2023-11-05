@@ -8,3 +8,8 @@ export interface ILogInValues {
   email: string;
   password: string;
 }
+
+export interface INewContactValues {
+  name: string;
+  phone: string;
+}

@@ -1,9 +1,9 @@
 'use client';
 
 import { Field, Form, Formik, FormikHelpers } from "formik";
+import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { ILogInValues } from "@/types/forms";
 import { logInSchema } from "@/schemas";
-import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 
 const initialValues = {
   email: "",
@@ -21,9 +21,9 @@ export const LoginForm = () => {
 
   return (
     <Formik
-    initialValues={initialValues}
-    validationSchema={logInSchema}
-    onSubmit={handleSubmit}
+      initialValues={initialValues}
+      validationSchema={logInSchema}
+      onSubmit={handleSubmit}
     >
       <Form>
         <FormControl isRequired>
