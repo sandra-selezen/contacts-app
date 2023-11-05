@@ -1,14 +1,10 @@
-import { Metadata } from "next"
-
-export const metadata: Metadata = {
-  title: 'Contacts App',
-  description: 'Contacts App created with Next.js'
-}
+import { AuthNav } from "@/components/navigations/AuthNav";
 
 const Home = () => {
   return (
     <div>
       <h1>Home Page</h1>
+      <AuthNav />
     </div>
   )
 }

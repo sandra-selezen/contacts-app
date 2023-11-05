@@ -1,6 +1,7 @@
 'use client'
 
-import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import NextLink from 'next/link';
+import { Button, FormControl, FormLabel, HStack, Input, Link, Text } from '@chakra-ui/react';
 import { Formik, Form, FormikHelpers, Field } from 'formik';
 import { signUpSchema } from '@/schemas';
 import { ISignUpValues } from '@/types/forms';
@@ -27,22 +28,25 @@ export const SignupForm = () => {
       onSubmit={handleSubmit}
     >
       <Form>
-        <FormControl isRequired>
+        <FormControl isRequired marginBottom={'12px'}>
           <FormLabel htmlFor='name'>Full name</FormLabel>
           <Field as={Input} id='name' name='name' type='text' placeholder='Enter your full name' />
         </FormControl>
 
-        <FormControl isRequired>
-          <FormLabel htmlFor='email'>Email</FormLabel>
+        <FormControl isRequired marginBottom={'12px'}>
+          <FormLabel htmlFor='email'>Email address</FormLabel>
           <Field as={Input} id='email' name='email' type='email' placeholder='Enter your email address' />
         </FormControl>
 
-        <FormControl isRequired>
+        <FormControl isRequired marginBottom={'12px'}>
           <FormLabel htmlFor='password'>Password</FormLabel>
           <Field as={Input} id='password' name='password' type='password' placeholder='Enter password' />
         </FormControl>
 
-        <Button type='submit'>Sign up</Button>
+        <HStack justifyContent={'space-between'}>
+          <Button type='submit'>Sign up</Button>
+          <Text>Have an account? <Link as={NextLink} href="/login">Log in now</Link></Text>
+        </HStack>
       </Form>
     </Formik>
   )
