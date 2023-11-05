@@ -1,3 +1,4 @@
+
 import { SignupForm } from "@/components/forms/SignUp/SignupForm"
 
 const SignUp = () => {

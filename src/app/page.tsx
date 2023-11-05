@@ -1,3 +1,10 @@
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: 'Contacts App',
+  description: 'Contacts App created with Next.js'
+}
+
 const Home = () => {
   return (
     <div>
