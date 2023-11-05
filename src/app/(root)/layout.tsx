@@ -1,4 +1,5 @@
-import { Header } from "@/components/shared/header/Header"
+import { Header } from "@/components/shared/header/Header";
+import { SideBar } from "@/components/shared/sidebar/SideBar";
 
 const MainLayout = ({
   children,
@@ -8,6 +9,7 @@ const MainLayout = ({
   return (
     <>
       <Header />
+      <SideBar />
     </>
   )
 }

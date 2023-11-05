@@ -6,6 +6,10 @@ export const Header = () => {
   return (
     <Box
       as="header"
+      position={"fixed"}
+      top={"0"}
+      zIndex={"30"}
+      width={"100%"}
       px={"6"}
       py={"3"}
       bg={"dark.900"}
