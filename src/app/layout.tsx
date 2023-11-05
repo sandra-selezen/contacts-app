@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Comfortaa } from 'next/font/google';
 import Providers from "./providers";
+import '../styles/global.css';
 
 export const comfortaa = Comfortaa({ 
   subsets: ['latin'],
