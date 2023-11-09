@@ -5,6 +5,9 @@ import { Field, Form, Formik, FormikHelpers } from "formik";
 import { Button, FormControl, FormLabel, HStack, Input, Text, Link } from "@chakra-ui/react";
 import { ILogInValues } from "@/types/forms";
 import { logInSchema } from "@/schemas";
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/redux/store';
+import { login } from '@/redux/auth/operations';
 
 const initialValues = {
   email: "",
@@ -12,11 +15,12 @@ const initialValues = {
 }
 
 export const LoginForm = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const handleSubmit = (
     values: ILogInValues,
     formikHelpers: FormikHelpers<ILogInValues>
   ) => {
-    console.log(values);
+    dispatch(login(values));
     formikHelpers.resetForm();
   };
 

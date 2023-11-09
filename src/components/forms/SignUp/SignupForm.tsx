@@ -5,6 +5,9 @@ import { Button, FormControl, FormLabel, HStack, Input, Link, Text } from '@chak
 import { Formik, Form, FormikHelpers, Field } from 'formik';
 import { signUpSchema } from '@/schemas';
 import { ISignUpValues } from '@/types/forms';
+import { register } from '@/redux/auth/operations';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/redux/store';
 
 const initialValues = {
   name: "",
@@ -13,11 +16,12 @@ const initialValues = {
 }
 
 export const SignupForm = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const handleSubmit = (
     values: ISignUpValues,
     formikHelpers: FormikHelpers<ISignUpValues>
   ) => {
-    console.log(values);
+    dispatch(register(values));
     formikHelpers.resetForm();
   };
 
