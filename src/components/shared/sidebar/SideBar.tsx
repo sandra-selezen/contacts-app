@@ -6,7 +6,11 @@ import { sideBarLinks } from "@/constants/nav-links";
 import { usePathname } from "next/navigation";
 import { UserBar } from "@/components/navigations/UserBar";
 
-export const SideBar = () => {
+interface IProps {
+  name: string;
+}
+
+export const SideBar = ({ name }: IProps) => {
   const pathname = usePathname();
   return (
     <Stack
@@ -54,7 +58,7 @@ export const SideBar = () => {
         })}
       </Stack>
       <Button type="button" bg={"light.700"}>Add contact</Button>
-      <UserBar />
+      <UserBar name={name} />
     </Stack>
   )
 }

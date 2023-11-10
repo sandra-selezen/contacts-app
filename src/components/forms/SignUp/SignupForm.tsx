@@ -17,11 +17,11 @@ const initialValues = {
 
 export const SignupForm = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const handleSubmit = (
+  const handleSubmit = async (
     values: ISignUpValues,
     formikHelpers: FormikHelpers<ISignUpValues>
   ) => {
-    dispatch(register(values));
+    await dispatch(register(values)).unwrap();
     formikHelpers.resetForm();
   };
 

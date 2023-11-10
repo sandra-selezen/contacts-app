@@ -16,11 +16,11 @@ const initialValues = {
 
 export const LoginForm = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const handleSubmit = (
+  const handleSubmit = async (
     values: ILogInValues,
     formikHelpers: FormikHelpers<ILogInValues>
   ) => {
-    dispatch(login(values));
+    await dispatch(login(values)).unwrap();
     formikHelpers.resetForm();
   };
 

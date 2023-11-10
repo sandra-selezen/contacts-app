@@ -2,7 +2,11 @@ import NextLink from 'next/link';
 import { Box, HStack, Link } from "@chakra-ui/react";
 import { UserMenu } from '@/components/navigations/UserMenu';
 
-export const Header = () => {
+interface IProps {
+  name: string;
+}
+
+export const Header = ({ name }: IProps) => {
   return (
     <Box
       as="header"
@@ -16,7 +20,7 @@ export const Header = () => {
     >
       <HStack as={'nav'} justifyContent={"space-between"}>
         <Link as={NextLink} href="/">PhoneBook</Link>
-        <UserMenu />
+        <UserMenu name={name} />
       </HStack>
     </Box>
   )

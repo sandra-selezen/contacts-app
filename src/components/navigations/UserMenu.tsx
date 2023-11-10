@@ -1,11 +1,15 @@
 import { Avatar, HStack, IconButton, Text } from "@chakra-ui/react";
 import { RiLoginBoxLine } from "react-icons/ri";
 
-export const UserMenu = () => {
+interface IProps {
+  name: string;
+}
+
+export const UserMenu = ({ name }: IProps) => {
   return (
     <HStack>
-      <Avatar size={'sm'} name="Sandra" src="" />
-      <Text>Sandra</Text>
+      <Avatar size={'sm'} name={name} src="" />
+      <Text>{name}</Text>
       <IconButton
         aria-label="Log out"
         backgroundColor={"transparent"}

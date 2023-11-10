@@ -1,11 +1,15 @@
 import { Avatar, HStack, IconButton, Text } from "@chakra-ui/react";
 import { RiSettings3Line } from "react-icons/ri";
 
-export const UserBar = () => {
+interface IProps {
+  name: string;
+}
+
+export const UserBar = ({ name }: IProps) => {
   return (
     <HStack marginTop={"auto"}>
-      <Avatar name="Sandra" src="" size={"sm"} />
-      <Text>Sandra</Text>
+      <Avatar name={name} src="" size={"sm"} />
+      <Text>{name}</Text>
       <IconButton
         aria-label="Open user profile"
         backgroundColor={"transparent"}

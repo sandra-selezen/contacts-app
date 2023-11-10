@@ -2,10 +2,10 @@ import { AuthNav } from "@/components/navigations/AuthNav";
 
 const Home = () => {
   return (
-    <div>
+    <main>
       <h1>Home Page</h1>
       <AuthNav />
-    </div>
+    </main>
   )
 }
 
