@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { API_BASE_URL } from "@/constants/apiBaseUrl";
 import { IApiError, ILoggedUser, ISignedUser } from "@/types/api-data";
 import { ILogInValues, ISignUpValues } from "@/types/forms";
-import { RootState } from "../rootReducer";
+import { RootState } from "../store";
 
 axios.defaults.baseURL = API_BASE_URL;
 
