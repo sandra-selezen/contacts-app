@@ -20,7 +20,7 @@ export const Header = ({ name }: IProps) => {
     >
       <HStack as={'nav'} justifyContent={"space-between"}>
         <Link as={NextLink} href="/">PhoneBook</Link>
-        <UserMenu name={name} />
+        {/* <UserMenu name={name} /> */}
       </HStack>
     </Box>
   )
