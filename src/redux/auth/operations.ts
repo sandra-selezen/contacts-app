@@ -57,15 +57,15 @@ export const logout = createAsyncThunk<void, void, { rejectValue: IApiError }>(
 export const refreshUser = createAsyncThunk<ILoggedUser, void, { rejectValue: string | IApiError }>(
   "auth/refresh",
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState() as RootState;
-    const persistedToken = state.auth.token;
+    // const state = thunkAPI.getState() as RootState;
+    // const persistedToken = state.auth.token;
 
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue("Unable to fetch user");
-    }
+    // if (persistedToken === null) {
+    //   return thunkAPI.rejectWithValue("Unable to fetch user");
+    // }
 
     try {
-      setAuthHeader(persistedToken);
+      // setAuthHeader(persistedToken);
       const response = await axios.get("/auth/current");
       return response.data as ILoggedUser;
     } catch (error: any) {
