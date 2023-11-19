@@ -1,13 +1,11 @@
 'use client'
 
 import NextLink from 'next/link';
+import { signIn } from 'next-auth/react';
 import { Button, FormControl, FormLabel, HStack, Input, Link, Text } from '@chakra-ui/react';
 import { Formik, Form, FormikHelpers, Field } from 'formik';
 import { signUpSchema } from '@/schemas';
 import { ISignUpValues } from '@/types/forms';
-import { register } from '@/redux/auth/operations';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@/redux/store';
 
 const initialValues = {
   name: "",
@@ -16,13 +14,20 @@ const initialValues = {
 }
 
 export const SignupForm = () => {
-  const dispatch = useDispatch<AppDispatch>();
   const handleSubmit = async (
     values: ISignUpValues,
     formikHelpers: FormikHelpers<ISignUpValues>
   ) => {
-    await dispatch(register(values)).unwrap();
-    formikHelpers.resetForm();
+    try {
+      await signIn("credentials", {
+        id: "auth-signup",
+        ...values,
+        redirect: false,
+      });
+      formikHelpers.resetForm();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

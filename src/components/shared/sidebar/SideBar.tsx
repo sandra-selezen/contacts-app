@@ -58,7 +58,7 @@ export const SideBar = ({ name }: IProps) => {
         })}
       </Stack>
       <Button type="button" bg={"light.700"}>Add contact</Button>
-      {/* <UserBar name={name} /> */}
+      <UserBar name={name} />
     </Stack>
   )
 }
