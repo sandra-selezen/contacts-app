@@ -7,8 +7,8 @@ import { LoginForm } from "@/components/forms/LogIn/LoginForm";
 import { GitHubButton } from "@/components/ui/GitHubButton";
 
 const LogInPage = () => {
-  const session = useSession();
-  if (session.data) redirect("/contacts");
+  // const session = useSession();
+  // if (session.data) redirect("/contacts");
   return (
     <>
       <Heading as={'h1'} sx={{ fontWeight: 700, marginBottom: '24px' }}>Log in to your account</Heading>

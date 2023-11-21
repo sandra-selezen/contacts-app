@@ -23,30 +23,7 @@ export const options: NextAuthOptions  = {
       clientSecret: process.env.GITHUB_SECRET as string,
     }),
     CredentialsProvider({
-      id: "auth-signup",
-      name: "Auth Sign up",
-      credentials: {},
-      async authorize(credentials) {
-        console.log("register", credentials);
-        const { name, email, password } = credentials;
-
-        const authData = {
-          name,
-          email,
-          password
-        }
-
-        try {
-          const response = await axios.post("/auth/register", authData);
-          return response.data;
-        } catch (error: any) {
-          throw new Error(error.message);
-        }
-      }
-    }),
-    CredentialsProvider({
-      id: "auth-login",
-      name: "Auth Log In",
+      name: "Log In",
       credentials: {},
       async authorize(credentials) {
         console.log("login", credentials);
@@ -68,7 +45,6 @@ export const options: NextAuthOptions  = {
     }),
   ],
   pages: {
-    signIn: "/login",
-    newUser: "/signup"
+    signIn: "/login"
   }
 }

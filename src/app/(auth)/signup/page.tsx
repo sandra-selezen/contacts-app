@@ -7,8 +7,8 @@ import { SignupForm } from "@/components/forms/SignUp/SignupForm"
 import { GitHubButton } from "@/components/ui/GitHubButton";
 
 const SignUpPage = () => {
-  const session = useSession();
-  if (session.data) redirect("/login");
+  // const session = useSession();
+  // if (session.data) redirect("/login");
   return (
     <>
       <Heading as={'h1'} sx={{ fontWeight: 700, marginBottom: '24px' }}>Create your account</Heading>

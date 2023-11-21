@@ -6,6 +6,7 @@ import { Field, Form, Formik, FormikHelpers } from "formik";
 import { Button, FormControl, FormLabel, HStack, Input, Text, Link } from "@chakra-ui/react";
 import { ILogInValues } from "@/types/forms";
 import { logInSchema } from "@/schemas";
+import { useRouter } from 'next/navigation';
 
 const initialValues = {
   email: "",
@@ -13,17 +14,19 @@ const initialValues = {
 }
 
 export const LoginForm = () => {
+  const router = useRouter();
+
   const handleSubmit = async (
     values: ILogInValues,
     formikHelpers: FormikHelpers<ILogInValues>
   ) => {
     try {
       await signIn("credentials", {
-        id: "auth-login",
         ...values,
         redirect: false,
       });
       formikHelpers.resetForm();
+      router.push("/contacts");
     } catch (error) {
       console.log(error);
     }

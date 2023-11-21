@@ -2,10 +2,14 @@
 
 import NextLink from 'next/link';
 import { signIn } from 'next-auth/react';
+import axios from "axios";
 import { Button, FormControl, FormLabel, HStack, Input, Link, Text } from '@chakra-ui/react';
 import { Formik, Form, FormikHelpers, Field } from 'formik';
+import { API_BASE_URL } from "@/constants/apiBaseUrl";
 import { signUpSchema } from '@/schemas';
 import { ISignUpValues } from '@/types/forms';
+
+axios.defaults.baseURL = API_BASE_URL;
 
 const initialValues = {
   name: "",
@@ -19,14 +23,13 @@ export const SignupForm = () => {
     formikHelpers: FormikHelpers<ISignUpValues>
   ) => {
     try {
-      await signIn("credentials", {
-        id: "auth-signup",
-        ...values,
-        redirect: false,
-      });
-      formikHelpers.resetForm();
+      const response = await axios.post("/auth/register", values);
+      console.log(response.data);
+      return response.data;
     } catch (error) {
       console.log(error);
+    } finally {
+      formikHelpers.resetForm();
     }
   };
 
