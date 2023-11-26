@@ -26,7 +26,6 @@ export const options: NextAuthOptions  = {
       name: "Log In",
       credentials: {},
       async authorize(credentials) {
-        console.log("login", credentials);
         const { email, password } = credentials;
 
         const authData = {
@@ -36,10 +35,11 @@ export const options: NextAuthOptions  = {
 
         try {
           const response = await axios.post("/auth/login", authData);
+          console.log(response.data);
           setAuthHeader(response.data.token);
           return response.data;
         } catch (error: any) {
-          throw new Error(error.message);
+          throw new Error(error.response.data.message);
         }
       }
     }),

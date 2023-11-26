@@ -3,7 +3,7 @@
 import NextLink from 'next/link';
 import { signIn } from 'next-auth/react';
 import { Field, Form, Formik, FormikHelpers } from "formik";
-import { Button, FormControl, FormLabel, HStack, Input, Text, Link } from "@chakra-ui/react";
+import { Button, FormControl, FormLabel, HStack, Input, Text, Link, useToast } from "@chakra-ui/react";
 import { ILogInValues } from "@/types/forms";
 import { logInSchema } from "@/schemas";
 import { useRouter } from 'next/navigation';
@@ -15,6 +15,7 @@ const initialValues = {
 
 export const LoginForm = () => {
   const router = useRouter();
+  const toast = useToast();
 
   const handleSubmit = async (
     values: ILogInValues,
@@ -25,10 +26,16 @@ export const LoginForm = () => {
         ...values,
         redirect: false,
       });
-      formikHelpers.resetForm();
       router.push("/contacts");
     } catch (error) {
-      console.log(error);
+      toast({
+        title: `${error}`,
+        status: 'error',
+        position: 'top',
+        duration: 3000,
+      });
+    } finally {
+      formikHelpers.resetForm();
     }
   };
 
@@ -50,8 +57,8 @@ export const LoginForm = () => {
         </FormControl>
 
         <HStack justifyContent={'space-between'}>
-          <Button type='submit'>Log in</Button>
-          <Text>Don&apos;t have an account? <Link as={NextLink} href="/signup">Sign up</Link></Text>
+          <Button type='submit' fontWeight={'700'}  _hover={{ color: 'white', backgroundColor: 'primary' }}>Log in</Button>
+          <Text>Don&apos;t have an account? <Link as={NextLink} href="/signup" fontWeight={'700'} _hover={{ textDecoration: 'none', color: 'primary' }}>Sign up</Link></Text>
         </HStack>
       </Form>
     </Formik>

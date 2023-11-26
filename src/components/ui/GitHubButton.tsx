@@ -8,7 +8,10 @@ export const GitHubButton = () => {
   return (
     <Button onClick={() => signIn("github", {
       callbackUrl
-    })}>
+    })}
+      _hover={{ color: 'white', backgroundColor: 'primary' }}
+      fontWeight={'700'}
+    >
       Sign in with GitHub
     </Button>
   )

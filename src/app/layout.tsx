@@ -1,11 +1,11 @@
 import { Metadata } from "next";
-import { Comfortaa } from 'next/font/google';
+import { Nunito } from 'next/font/google';
 import Providers from "./providers";
 import '../styles/global.css';
 
-export const comfortaa = Comfortaa({ 
+export const nunito = Nunito({ 
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700']
+  weight: ['400', '500', '600', '700', '900']
 })
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ const RootLayout = ({
 }) => {
   return (
     <html lang="en">
-      <body className={comfortaa.className}>
+      <body className={nunito.className}>
         <Providers>
           {children}
         </Providers>

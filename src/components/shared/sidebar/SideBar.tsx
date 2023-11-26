@@ -27,7 +27,9 @@ export const SideBar = ({ name }: IProps) => {
         paddingLeft: "24px",
         paddingRight: "24px",
         overflow: "auto",
-        borderRight: "1px solid #1F1F22"
+        borderRight: "1px solid #1F1F22",
+        overflowY: "auto",
+        scrollBehavior: "auto",
       }}
     >
       <Stack gap={"6"} px={"6"} mb={"8"} alignItems={{ base: "center", md: "normal" }}>

@@ -2,14 +2,12 @@
 
 import NextLink from 'next/link';
 import { signIn } from 'next-auth/react';
-import axios from "axios";
-import { Button, FormControl, FormLabel, HStack, Input, Link, Text } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, HStack, Input, Link, Text, useToast } from '@chakra-ui/react';
+
 import { Formik, Form, FormikHelpers, Field } from 'formik';
-import { API_BASE_URL } from "@/constants/apiBaseUrl";
 import { signUpSchema } from '@/schemas';
 import { ISignUpValues } from '@/types/forms';
-
-axios.defaults.baseURL = API_BASE_URL;
+import { register } from '@/services/api';
 
 const initialValues = {
   name: "",
@@ -18,16 +16,21 @@ const initialValues = {
 }
 
 export const SignupForm = () => {
+  const toast = useToast();
+
   const handleSubmit = async (
     values: ISignUpValues,
     formikHelpers: FormikHelpers<ISignUpValues>
   ) => {
     try {
-      const response = await axios.post("/auth/register", values);
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      console.log(error);
+      await register(values);
+    } catch (error: any) {
+      toast({
+        title: `${error}`,
+        status: 'error',
+        position: 'top',
+        duration: 3000,
+      });
     } finally {
       formikHelpers.resetForm();
     }
@@ -56,8 +59,8 @@ export const SignupForm = () => {
         </FormControl>
 
         <HStack justifyContent={'space-between'}>
-          <Button type='submit'>Sign up</Button>
-          <Text>Have an account? <Link as={NextLink} href="/login">Log in now</Link></Text>
+          <Button type='submit' fontWeight={'700'}  _hover={{ color: 'white', backgroundColor: 'primary' }}>Sign up</Button>
+          <Text>Have an account? <Link as={NextLink} href="/login" fontWeight={'700'} _hover={{ textDecoration: 'none', color: 'primary' }}>Log in now</Link></Text>
         </HStack>
       </Form>
     </Formik>
