@@ -1,10 +1,12 @@
 "use client";
 
 import NextLink from "next/link";
-import { Icon, Link, Text, Stack, Button } from "@chakra-ui/react";
+import { Icon, Link, Text, Stack, Button, useDisclosure } from "@chakra-ui/react";
 import { sideBarLinks } from "@/constants/nav-links";
 import { usePathname } from "next/navigation";
 import { UserBar } from "@/components/navigations/UserBar";
+import { ContactModal } from "@/components/ui/modals/ContactModal";
+import { NewContactForm } from "@/components/forms/NewContact/NewContactForm";
 
 interface IProps {
   name: string;
@@ -12,6 +14,7 @@ interface IProps {
 
 export const SideBar = ({ name }: IProps) => {
   const pathname = usePathname();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Stack
       as={"section"}
@@ -59,8 +62,11 @@ export const SideBar = ({ name }: IProps) => {
           </Link>)
         })}
       </Stack>
-      <Button type="button" bg={"light.700"}>Add contact</Button>
+      <Button type="button" bg={"light.700"} onClick={onOpen}>Add contact</Button>
       <UserBar name={name} />
+      <ContactModal isOpen={isOpen} onClose={onClose} title={'Add new contact'}>
+        <NewContactForm onClose={onClose} />
+      </ContactModal>
     </Stack>
   )
 }

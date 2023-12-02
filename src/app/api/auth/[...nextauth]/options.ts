@@ -4,7 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
 import { API_BASE_URL } from "@/constants/apiBaseUrl";
 
-axios.defaults.baseURL = API_BASE_URL;
+axios.defaults.baseURL = process.env.NEXT_API_URL;
 
 // Utility to add JWT
 const setAuthHeader = (token: string) => {
