@@ -9,12 +9,12 @@ interface IProps {
 }
 
 export const UserBar = ({ name }: IProps) => {
-  const session = useSession();
+  // const session = useSession();
 
   return (
     <HStack marginTop={"auto"}>
-      <Avatar name={session.data?.user?.name || ""} src={session.data?.user?.image || ""} size={"sm"} />
-      <Text>{session.data?.user?.name || ""}</Text>
+      {/* <Avatar name={session.data?.user?.name || ""} src={session.data?.user?.image || ""} size={"sm"} />
+      <Text>{session.data?.user?.name || ""}</Text> */}
       <IconButton
         aria-label="Open user profile"
         backgroundColor={"transparent"}

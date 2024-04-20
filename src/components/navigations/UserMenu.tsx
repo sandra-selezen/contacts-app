@@ -8,13 +8,13 @@ interface IProps {
 }
 
 export const UserMenu = ({ name }: IProps) => {
-  const session = useSession();
-  console.log(session);
+  // const session = useSession();
+  // console.log(session);
 
   return (
     <HStack>
-      <Avatar size={'sm'} name={session.data?.user?.name || ""} src={session.data?.user?.image || ""} />
-      <Text>{session.data?.user?.name || ""}</Text>
+      {/* <Avatar size={'sm'} name={session.data?.user?.name || ""} src={session.data?.user?.image || ""} />
+      <Text>{session.data?.user?.name || ""}</Text> */}
       <IconButton
         aria-label="Log out"
         backgroundColor={"transparent"}

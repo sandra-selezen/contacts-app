@@ -7,7 +7,11 @@ import { Button, FormControl, FormLabel, HStack, Input, Link, Text, useToast } f
 import { Formik, Form, FormikHelpers, Field } from 'formik';
 import { signUpSchema } from '@/schemas';
 import { ISignUpValues } from '@/types/forms';
-import { register } from '@/services/api';
+// import { register } from '@/services/api';
+import { AppDispatch } from '@/redux/store';
+import { useDispatch } from 'react-redux';
+import { register } from '@/redux/auth/operations';
+import { useRouter } from 'next/navigation';
 
 const initialValues = {
   name: "",
@@ -16,6 +20,8 @@ const initialValues = {
 }
 
 export const SignupForm = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
   const toast = useToast();
 
   const handleSubmit = async (
@@ -23,7 +29,9 @@ export const SignupForm = () => {
     formikHelpers: FormikHelpers<ISignUpValues>
   ) => {
     try {
-      await register(values);
+      // await register(values);
+      await dispatch(register(values));
+      router.push('/login');
     } catch (error: any) {
       toast({
         title: `${error}`,

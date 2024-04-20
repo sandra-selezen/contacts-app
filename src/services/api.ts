@@ -2,7 +2,13 @@ import axios from "axios";
 import { API_BASE_URL } from "@/constants/apiBaseUrl";
 import { ISignUpValues } from "@/types/forms";
 
-axios.defaults.baseURL = process.env.NEXT_API_URL;
+// axios.defaults.baseURL = process.env.NEXT_API_URL;
+
+// axios.defaults.baseURL = "http://localhost:8080/api";
+
+// export const api = axios.create({
+//   baseURL: "http://localhost:8080/api",
+// });
 
 export const register = async (credentials: ISignUpValues) => {
   try {

@@ -12,9 +12,9 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
     <CacheProvider>
       <ChakraProvider theme={theme}>
         <Provider store={store}>
-          <SessionProvider>
+          {/* <SessionProvider> */}
             {children}
-          </SessionProvider>
+          {/* </SessionProvider> */}
         </Provider>
       </ChakraProvider>
     </CacheProvider>

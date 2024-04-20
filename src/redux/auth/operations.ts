@@ -5,7 +5,9 @@ import { IApiError, ILoggedUser, ISignedUser } from "@/types/api-data";
 import { ILogInValues, ISignUpValues } from "@/types/forms";
 // import { RootState } from "../store";
 
-axios.defaults.baseURL = API_BASE_URL;
+// axios.defaults.baseURL = API_BASE_URL;
+
+axios.defaults.baseURL = "http://localhost:8080/api";
 
 // Utility to add JWT
 const setAuthHeader = (token: string) => {

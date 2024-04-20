@@ -7,6 +7,9 @@ import { Button, FormControl, FormLabel, HStack, Input, Text, Link, useToast } f
 import { ILogInValues } from "@/types/forms";
 import { logInSchema } from "@/schemas";
 import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/redux/store';
+import { login } from '@/redux/auth/operations';
 
 const initialValues = {
   email: "",
@@ -14,6 +17,7 @@ const initialValues = {
 }
 
 export const LoginForm = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const toast = useToast();
 
@@ -22,10 +26,7 @@ export const LoginForm = () => {
     formikHelpers: FormikHelpers<ILogInValues>
   ) => {
     try {
-      await signIn("credentials", {
-        ...values,
-        redirect: false,
-      });
+      await dispatch(login(values));
       router.push("/contacts");
     } catch (error) {
       toast({
