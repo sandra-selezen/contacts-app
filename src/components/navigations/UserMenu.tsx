@@ -1,20 +1,21 @@
 "use client"
+
+import { useDispatch } from "react-redux";
 import { Avatar, HStack, IconButton, Text } from "@chakra-ui/react";
-import { signOut, useSession } from "next-auth/react";
 import { RiLogoutBoxRLine } from "react-icons/ri";
+import { AppDispatch } from "@/redux/store";
+import { logout } from "@/redux/auth/operations";
 
 interface IProps {
   name: string;
 }
 
 export const UserMenu = ({ name }: IProps) => {
-  // const session = useSession();
-  // console.log(session);
-
+  const dispatch = useDispatch<AppDispatch>();
   return (
     <HStack>
-      {/* <Avatar size={'sm'} name={session.data?.user?.name || ""} src={session.data?.user?.image || ""} />
-      <Text>{session.data?.user?.name || ""}</Text> */}
+      <Avatar size={'sm'} name={name || ""} src={name} />
+      <Text>{name || ""}</Text>
       <IconButton
         aria-label="Log out"
         backgroundColor={"transparent"}
@@ -24,9 +25,7 @@ export const UserMenu = ({ name }: IProps) => {
         _hover={{
           backgroundColor: "dark.700"
         }}
-        onClick={() => signOut({
-          callbackUrl: "/"
-        })}
+        onClick={() => dispatch(logout())}
       />
     </HStack>
   )

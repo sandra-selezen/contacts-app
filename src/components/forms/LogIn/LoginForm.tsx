@@ -1,13 +1,12 @@
 'use client';
 
 import NextLink from 'next/link';
-import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { Button, FormControl, FormLabel, HStack, Input, Text, Link, useToast } from "@chakra-ui/react";
 import { ILogInValues } from "@/types/forms";
 import { logInSchema } from "@/schemas";
-import { useRouter } from 'next/navigation';
-import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/redux/store';
 import { login } from '@/redux/auth/operations';
 

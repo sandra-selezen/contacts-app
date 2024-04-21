@@ -1,17 +1,14 @@
 'use client'
 
 import NextLink from 'next/link';
-import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
 import { Button, FormControl, FormLabel, HStack, Input, Link, Text, useToast } from '@chakra-ui/react';
-
 import { Formik, Form, FormikHelpers, Field } from 'formik';
 import { signUpSchema } from '@/schemas';
 import { ISignUpValues } from '@/types/forms';
-// import { register } from '@/services/api';
 import { AppDispatch } from '@/redux/store';
-import { useDispatch } from 'react-redux';
 import { register } from '@/redux/auth/operations';
-import { useRouter } from 'next/navigation';
 
 const initialValues = {
   name: "",

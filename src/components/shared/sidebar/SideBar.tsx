@@ -1,9 +1,9 @@
 "use client";
 
 import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 import { Icon, Link, Text, Stack, Button, useDisclosure } from "@chakra-ui/react";
 import { sideBarLinks } from "@/constants/nav-links";
-import { usePathname } from "next/navigation";
 import { UserBar } from "@/components/navigations/UserBar";
 import { ContactModal } from "@/components/ui/modals/ContactModal";
 import { NewContactForm } from "@/components/forms/NewContact/NewContactForm";

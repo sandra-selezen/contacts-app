@@ -48,7 +48,7 @@ export const logout = createAsyncThunk<void, void, { rejectValue: IApiError }>(
   "auth/logout",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.post("/auth/logout");
+      await axios.post("/auth/logout");
       clearAuthHeader();
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);
