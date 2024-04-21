@@ -3,9 +3,7 @@ import { IApiError, IContact } from "@/types/api-data";
 import axios from "axios";
 import { INewContactValues } from "@/types/forms";
 
-// axios.defaults.baseURL = process.env.NEXT_API_URL;
-
-axios.defaults.baseURL = "http://localhost:8080/api";
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 export const getAllContacts = createAsyncThunk(
   "contacts/getAllContacts",

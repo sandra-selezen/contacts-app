@@ -7,7 +7,7 @@ import { ILogInValues, ISignUpValues } from "@/types/forms";
 
 // axios.defaults.baseURL = API_BASE_URL;
 
-axios.defaults.baseURL = "http://localhost:8080/api";
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 // Utility to add JWT
 const setAuthHeader = (token: string) => {
