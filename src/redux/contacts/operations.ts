@@ -3,7 +3,7 @@ import { IApiError, IContact } from "@/types/api-data";
 import axios from "axios";
 import { INewContactValues } from "@/types/forms";
 
-axios.defaults.baseURL = process.env.NEXT_API_URL;
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 export const getAllContacts = createAsyncThunk(
   "contacts/getAllContacts",
@@ -22,10 +22,8 @@ export const addNewContact = createAsyncThunk<IContact, INewContactValues, { rej
   async (data, thunkAPI) => {
     try {
       const response = await axios.post("/contacts", data);
-      console.log(response)
       return response.data;
     } catch (error: any) {
-      console.log(error)
       return thunkAPI.rejectWithValue(error.message);
     }
   }

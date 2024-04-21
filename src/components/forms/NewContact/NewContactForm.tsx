@@ -6,6 +6,7 @@ import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { INewContactValues } from "@/types/forms";
 import { newContactSchema } from "@/schemas";
 import { addNewContact } from "@/redux/contacts/operations";
+import { AppDispatch } from "@/redux/store";
 
 const initialValues = {
   name: "",
@@ -17,14 +18,13 @@ interface INewContactForm {
 }
 
 export const NewContactForm = ({ onClose }: INewContactForm) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const handleSubmit = (
+  const handleSubmit = async (
     values: INewContactValues,
     formikHelpers: FormikHelpers<INewContactValues>
   ) => {
-    console.log(values);
-    dispatch(addNewContact(values));
+    await dispatch(addNewContact(values)).unwrap();
     formikHelpers.resetForm();
     onClose();
   };

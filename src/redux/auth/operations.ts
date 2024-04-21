@@ -5,7 +5,9 @@ import { IApiError, ILoggedUser, ISignedUser } from "@/types/api-data";
 import { ILogInValues, ISignUpValues } from "@/types/forms";
 // import { RootState } from "../store";
 
-axios.defaults.baseURL = API_BASE_URL;
+// axios.defaults.baseURL = API_BASE_URL;
+
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 // Utility to add JWT
 const setAuthHeader = (token: string) => {
@@ -46,7 +48,7 @@ export const logout = createAsyncThunk<void, void, { rejectValue: IApiError }>(
   "auth/logout",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.post("/auth/logout");
+      await axios.post("/auth/logout");
       clearAuthHeader();
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);

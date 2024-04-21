@@ -1,7 +1,6 @@
 "use client"
 
 import { Avatar, HStack, IconButton, Text } from "@chakra-ui/react";
-import { useSession } from "next-auth/react";
 import { RiSettings3Line } from "react-icons/ri";
 
 interface IProps {
@@ -9,12 +8,11 @@ interface IProps {
 }
 
 export const UserBar = ({ name }: IProps) => {
-  const session = useSession();
 
   return (
     <HStack marginTop={"auto"}>
-      <Avatar name={session.data?.user?.name || ""} src={session.data?.user?.image || ""} size={"sm"} />
-      <Text>{session.data?.user?.name || ""}</Text>
+      <Avatar name={name || ""} src={name} size={"sm"} />
+      <Text>{name || ""}</Text>
       <IconButton
         aria-label="Open user profile"
         backgroundColor={"transparent"}

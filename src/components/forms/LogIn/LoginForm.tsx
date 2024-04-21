@@ -1,12 +1,14 @@
 'use client';
 
 import NextLink from 'next/link';
-import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { Button, FormControl, FormLabel, HStack, Input, Text, Link, useToast } from "@chakra-ui/react";
 import { ILogInValues } from "@/types/forms";
 import { logInSchema } from "@/schemas";
-import { useRouter } from 'next/navigation';
+import { AppDispatch } from '@/redux/store';
+import { login } from '@/redux/auth/operations';
 
 const initialValues = {
   email: "",
@@ -14,6 +16,7 @@ const initialValues = {
 }
 
 export const LoginForm = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const toast = useToast();
 
@@ -22,10 +25,7 @@ export const LoginForm = () => {
     formikHelpers: FormikHelpers<ILogInValues>
   ) => {
     try {
-      await signIn("credentials", {
-        ...values,
-        redirect: false,
-      });
+      await dispatch(login(values));
       router.push("/contacts");
     } catch (error) {
       toast({
