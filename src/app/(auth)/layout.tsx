@@ -1,4 +1,4 @@
-import { Container } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,12 +12,12 @@ const AuthLayout = ({
   children: React.ReactNode
 }) => {
   return (
-    <main>
+    <Box as="main">
       <Container pt={'40px'} pb={'40px'}>
         {children}
       </Container>
-    </main>
+    </Box>
   )
 }
 
-export default AuthLayout
+export default AuthLayout;

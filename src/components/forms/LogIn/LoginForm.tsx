@@ -2,13 +2,12 @@
 
 import NextLink from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useDispatch } from 'react-redux';
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { Button, FormControl, FormLabel, HStack, Input, Text, Link, useToast } from "@chakra-ui/react";
 import { ILogInValues } from "@/types/forms";
 import { logInSchema } from "@/schemas";
-import { AppDispatch } from '@/redux/store';
 import { login } from '@/redux/auth/operations';
+import { useAppDispatch } from '@/hooks/useApps';
 
 const initialValues = {
   email: "",
@@ -16,7 +15,7 @@ const initialValues = {
 }
 
 export const LoginForm = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const toast = useToast();
 

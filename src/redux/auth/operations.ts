@@ -1,22 +1,19 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { API_BASE_URL } from "@/constants/apiBaseUrl";
 import { IApiError, ILoggedUser, ISignedUser } from "@/types/api-data";
 import { ILogInValues, ISignUpValues } from "@/types/forms";
-// import { RootState } from "../store";
+import type { RootState } from "../store";
 
-// axios.defaults.baseURL = API_BASE_URL;
-
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL as string;
 
 // Utility to add JWT
 const setAuthHeader = (token: string) => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 };
 
 // Utility to remove JWT
 const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = "";
+  axios.defaults.headers.common['Authorization'] = "";
 };
 
 export const register = createAsyncThunk<ISignedUser, ISignUpValues, { rejectValue: IApiError }>(
@@ -59,15 +56,15 @@ export const logout = createAsyncThunk<void, void, { rejectValue: IApiError }>(
 export const refreshUser = createAsyncThunk<ILoggedUser, void, { rejectValue: string | IApiError }>(
   "auth/refresh",
   async (_, thunkAPI) => {
-    // const state = thunkAPI.getState() as RootState;
-    // const persistedToken = state.auth.token;
+    const state = thunkAPI.getState() as RootState;
+    const persistedToken = state.auth.token;
 
-    // if (persistedToken === null) {
-    //   return thunkAPI.rejectWithValue("Unable to fetch user");
-    // }
-
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue("Unable to fetch user");
+    }
+    setAuthHeader(persistedToken);
     try {
-      // setAuthHeader(persistedToken);
+      setAuthHeader(persistedToken);
       const response = await axios.get("/auth/current");
       return response.data as ILoggedUser;
     } catch (error: any) {

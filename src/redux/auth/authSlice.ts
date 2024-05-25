@@ -1,4 +1,4 @@
-import { ActionReducerMapBuilder, AnyAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice, ActionReducerMapBuilder, AnyAction } from "@reduxjs/toolkit";
 import { IAuthState } from "@/types/store";
 import { login, logout, refreshUser, register } from "./operations";
 
@@ -27,52 +27,52 @@ const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder: ActionReducerMapBuilder<IAuthState>) =>
-  builder
-    .addCase(register.fulfilled, (state, action) => {
-      state.user = {
-        name: action.payload.name,
-        email: action.payload.email,
-      };
-      state.isLoggedIn = false;
-      state.isLoading = false;
-      state.isRefreshing = false;
-    })
-    .addCase(login.fulfilled, (state, action) => {
-      state.user = {
-        name: action.payload.name,
-        email: action.payload.email,
-      };
-      state.isLoggedIn = true;
-      state.isLoading = false;
-      state.isRefreshing = false;
-      state.token = action.payload.token;
-    })
-    .addCase(logout.fulfilled, (state) => {
-      state.user = {
-        name: "",
-        email: "",
-      };
-      state.token = null;
-      state.isLoggedIn = false;
-    })
-    .addCase(refreshUser.fulfilled, (state, action) => {
-      state.user = {
-        name: action.payload.name,
-        email: action.payload.email,
-      };
-      state.isLoggedIn = true;
-      state.isLoading = false;
-      state.isRefreshing = false;
-      state.token = action.payload.token;
-    })
-    .addMatcher(isPending, (state) => {
-      state.isLoading = true;
-      state.isRefreshing = true;
-    })
-    .addMatcher(isError, (state, action) => {
-      state.error = action.payload || "Oops... Something went wrong!";
-      state.isLoading = false;
-    })
+    builder
+      .addCase(register.fulfilled, (state, action) => {
+        state.user = {
+          name: action.payload.name,
+          email: action.payload.email,
+        };
+        state.isLoggedIn = false;
+        state.isLoading = false;
+        state.isRefreshing = false;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.user = {
+          name: action.payload.name,
+          email: action.payload.email,
+        };
+        state.isLoggedIn = true;
+        state.isLoading = false;
+        state.isRefreshing = false;
+        state.token = action.payload.token;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = {
+          name: "",
+          email: "",
+        };
+        state.token = null;
+        state.isLoggedIn = false;
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.user = {
+          name: action.payload.name,
+          email: action.payload.email,
+        };
+        state.isLoggedIn = true;
+        state.isLoading = false;
+        state.isRefreshing = false;
+        state.token = action.payload.token;
+      })
+      .addMatcher(isPending, (state) => {
+        state.isLoading = true;
+        state.isRefreshing = true;
+      })
+      .addMatcher(isError, (state, action) => {
+        state.error = action.payload || "Oops... Something went wrong!";
+        state.isLoading = false;
+      }),
 });
 
 export const authReducer = authSlice.reducer;

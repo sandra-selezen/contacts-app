@@ -2,9 +2,10 @@
 
 import { CacheProvider } from "@chakra-ui/next-js";
 import { ChakraProvider } from "@chakra-ui/react";
-import { SessionProvider } from "next-auth/react";
+import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from "react-redux";
-import { store } from "@/redux/store";
+import { store, persistor } from "@/redux/store";
+import AuthLoader from "@/components/shared/AuthLoader";
 import { theme } from "@/styles/theme";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
@@ -12,13 +13,15 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
     <CacheProvider>
       <ChakraProvider theme={theme}>
         <Provider store={store}>
-          {/* <SessionProvider> */}
-            {children}
-          {/* </SessionProvider> */}
+          <PersistGate loading={null} persistor={persistor}>
+            <AuthLoader>
+              {children}
+            </AuthLoader>
+          </PersistGate>
         </Provider>
       </ChakraProvider>
     </CacheProvider>
   )
 }
 
-export default Providers
+export default Providers;

@@ -7,8 +7,8 @@ import { Button, FormControl, FormLabel, HStack, Input, Link, Text, useToast } f
 import { Formik, Form, FormikHelpers, Field } from 'formik';
 import { signUpSchema } from '@/schemas';
 import { ISignUpValues } from '@/types/forms';
-import { AppDispatch } from '@/redux/store';
 import { register } from '@/redux/auth/operations';
+import { useAppDispatch } from '@/hooks/useApps';
 
 const initialValues = {
   name: "",
@@ -17,7 +17,7 @@ const initialValues = {
 }
 
 export const SignupForm = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const toast = useToast();
 
@@ -26,7 +26,6 @@ export const SignupForm = () => {
     formikHelpers: FormikHelpers<ISignUpValues>
   ) => {
     try {
-      // await register(values);
       await dispatch(register(values));
       router.push('/login');
     } catch (error: any) {

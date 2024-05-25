@@ -11,8 +11,8 @@ export const UserBar = ({ name }: IProps) => {
 
   return (
     <HStack marginTop={"auto"}>
-      <Avatar name={name || ""} src={name} size={"sm"} />
-      <Text>{name || ""}</Text>
+      <Avatar name={name} src={name} size={"sm"} />
+      <Text>{name}</Text>
       <IconButton
         aria-label="Open user profile"
         backgroundColor={"transparent"}

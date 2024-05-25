@@ -3,15 +3,15 @@
 import { useDispatch } from "react-redux";
 import { Avatar, HStack, IconButton, Text } from "@chakra-ui/react";
 import { RiLogoutBoxRLine } from "react-icons/ri";
-import { AppDispatch } from "@/redux/store";
 import { logout } from "@/redux/auth/operations";
+import { useAppDispatch } from "@/hooks/useApps";
 
 interface IProps {
   name: string;
 }
 
 export const UserMenu = ({ name }: IProps) => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   return (
     <HStack>
       <Avatar size={'sm'} name={name || ""} src={name} />

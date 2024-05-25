@@ -1,12 +1,11 @@
 'use client';
 
-import { useDispatch } from "react-redux";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { INewContactValues } from "@/types/forms";
 import { newContactSchema } from "@/schemas";
 import { addNewContact } from "@/redux/contacts/operations";
-import { AppDispatch } from "@/redux/store";
+import { useAppDispatch } from "@/hooks/useApps";
 
 const initialValues = {
   name: "",
@@ -18,7 +17,7 @@ interface INewContactForm {
 }
 
 export const NewContactForm = ({ onClose }: INewContactForm) => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (
     values: INewContactValues,

@@ -1,4 +1,7 @@
+'use client';
+
 import { Box } from "@chakra-ui/react";
+import { useAuth } from "@/hooks/useAuth";
 import { Header } from "@/components/shared/header/Header";
 import { SideBar } from "@/components/shared/sidebar/SideBar";
 
@@ -7,11 +10,13 @@ const MainLayout = ({
 }: {
   children: React.ReactNode
 }) => {
+  const { user } = useAuth();
+
   return (
     <>
-      <Header name={'Sandra'} />
+      <Header name={user.name} />
       <Box as="main" sx={{ display: 'flex', flexDirection: 'row' }}>
-        <SideBar name={'Sandra'} />
+        <SideBar name={user.name} />
         <Box as="section" sx={{
           display: 'flex',
           flex: '1 1 0%',
@@ -29,4 +34,4 @@ const MainLayout = ({
   )
 }
 
-export default MainLayout
+export default MainLayout;
