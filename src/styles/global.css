@@ -8,6 +8,12 @@ body {
   color: #ffffff;
 }
 
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 .activeLink {
   background-color: #877EFF;
 }

@@ -1,5 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 import { modalTheme } from "./modal";
+import { popoverTheme } from "./popover";
 
 export const theme = extendTheme({
   fonts: {
@@ -22,5 +23,6 @@ export const theme = extendTheme({
   },
   components: {
     Modal: modalTheme,
+    Popover: popoverTheme,
   },
 });

@@ -1,7 +1,7 @@
 "use client"
 
 import { Avatar, HStack, IconButton, Text } from "@chakra-ui/react";
-import { RiSettings3Line } from "react-icons/ri";
+import { RiSettings3Line } from "@remixicon/react";
 
 interface IProps {
   name: string;
@@ -22,7 +22,7 @@ export const UserBar = ({ name }: IProps) => {
         _hover={{
           backgroundColor: "dark.700"
         }}
-        icon={<RiSettings3Line />}
+        icon={<RiSettings3Line size="1.5rem" />}
       />
     </HStack>
   )

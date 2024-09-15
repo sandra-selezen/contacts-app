@@ -1,4 +1,4 @@
-import { RiHome6Line, RiHeart3Line, RiTeamLine, RiCalendarLine } from "react-icons/ri";
+import { RiCalendarLine, RiHeart3Line, RiHome6Line, RiTeamLine } from "@remixicon/react";
 
 export const sideBarLinks = [
   {

@@ -2,7 +2,8 @@
 
 import { useDispatch } from "react-redux";
 import { Avatar, HStack, IconButton, Text } from "@chakra-ui/react";
-import { RiLogoutBoxRLine } from "react-icons/ri";
+import { RiLogoutBoxRLine } from "@remixicon/react";
+
 import { logout } from "@/redux/auth/operations";
 import { useAppDispatch } from "@/hooks/useApps";
 
@@ -21,7 +22,7 @@ export const UserMenu = ({ name }: IProps) => {
         backgroundColor={"transparent"}
         color={"inherit"}
         fontSize={"20px"}
-        icon={<RiLogoutBoxRLine />}
+        icon={<RiLogoutBoxRLine size="1.5rem" />}
         _hover={{
           backgroundColor: "dark.700"
         }}
