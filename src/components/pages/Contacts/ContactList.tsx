@@ -15,6 +15,7 @@ export const ContactList = () => {
   useEffect(() => {
     dispatch(getAllContacts());
   }, [dispatch]);
+
   return (
     <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={3} as="ul">
       {contacts?.map((contact) => (

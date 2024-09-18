@@ -1,17 +1,31 @@
 'use client';
 
 import React from 'react';
-import { Avatar, Badge, Box, Flex, IconButton, Text } from '@chakra-ui/react';
+import { Avatar, Box, Flex, IconButton, Text, useDisclosure } from '@chakra-ui/react';
 import { RiDeleteBin5Line, RiHeart3Line, RiPencilLine } from '@remixicon/react';
+import { useAppDispatch } from '@/hooks/useApps';
+import { deleteContact, toggleFavorite } from '@/redux/contacts/operations';
 import { IContact } from '@/types/store';
 import { ActionPopover } from '@/components/ui/popover/ActionPopover';
+import { ContactModal } from '@/components/ui/modals/ContactModal';
+import { UpdateContact } from '@/components/forms/UpdateContact/UpdateContact';
 
 interface IContactItemProps {
   contact: IContact;
 }
 
 export const ContactItem = ({ contact }: IContactItemProps) => {
-  console.log("contact", contact);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useAppDispatch();
+
+  const onToggleFavorite = async (contactId: string) => {
+    await dispatch(toggleFavorite(contactId)).unwrap();
+  };
+
+  const onDeleteContact = async (contactId: string) => {
+    await dispatch(deleteContact(contactId)).unwrap();
+  };
+
   return (
     <>
       <Box border='1px' borderColor='light.700' borderRadius="md" padding={4} as='li'>
@@ -20,16 +34,14 @@ export const ContactItem = ({ contact }: IContactItemProps) => {
           <Box ml='3'>
             <Text fontWeight='bold'>
               {contact.name}
-              <Badge ml='1' colorScheme='green'>
-                New
-              </Badge>
             </Text>
             <Text fontSize='sm'>{contact.phone}</Text>
           </Box>
           <ActionPopover>
             <Box display="flex" gap="0.5rem">
               <IconButton
-                aria-label={''}
+                title={contact.favorite ? 'Remove from favorite' : 'Add to favorites'}
+                aria-label={contact.favorite ? 'Remove from favorite' : 'Add to favorites'}
                 backgroundColor={"transparent"}
                 color={"inherit"}
                 fontSize={"20px"}
@@ -37,9 +49,11 @@ export const ContactItem = ({ contact }: IContactItemProps) => {
                   backgroundColor: "dark.700"
                 }}
                 icon={<RiHeart3Line size="1.5rem" />}
+                onClick={() => onToggleFavorite(contact._id)}
               />
               <IconButton
-                aria-label={''}
+                title={'Edit contact'}
+                aria-label={'Edit contact'}
                 backgroundColor={"transparent"}
                 color={"inherit"}
                 fontSize={"20px"}
@@ -47,9 +61,11 @@ export const ContactItem = ({ contact }: IContactItemProps) => {
                   backgroundColor: "dark.700"
                 }}
                 icon={<RiPencilLine size="1.5rem" />}
+                onClick={onOpen}
               />
               <IconButton
-                aria-label={''}
+                title={'Delete contsct'}
+                aria-label={'Delete contsct'}
                 backgroundColor={"transparent"}
                 color={"inherit"}
                 fontSize={"20px"}
@@ -57,11 +73,16 @@ export const ContactItem = ({ contact }: IContactItemProps) => {
                   backgroundColor: "dark.700"
                 }}
                 icon={<RiDeleteBin5Line size="1.5rem" />}
+                onClick={() => onDeleteContact(contact._id)}
               />
             </Box>
           </ActionPopover>
         </Flex>
       </Box>
+
+      <ContactModal isOpen={isOpen} onClose={onClose} title={'Edit contact'}>
+        <UpdateContact contact={contact} onClose={onClose} />
+      </ContactModal>
     </>
   )
 }

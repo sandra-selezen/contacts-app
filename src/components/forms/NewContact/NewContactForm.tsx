@@ -27,6 +27,7 @@ export const NewContactForm = ({ onClose }: INewContactForm) => {
     formikHelpers.resetForm();
     onClose();
   };
+
   return (
     <Formik
       initialValues={initialValues}
